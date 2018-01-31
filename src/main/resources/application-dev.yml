@@ -1,0 +1,19 @@
+########## tsl configuration ####################
+#server:
+  #ssl:
+#    key-store: ${application.ssl.keystore}
+#    key-store-password: ${application.ssl.keystore.password}
+#    key-store-type: ${application.ssl.keystore.type}
+#    client-auth: ${application.ssl.client.auth}
+#    enabled: ${application.ssl.enabled}
+#    trust-store: ${application.ssl.truststore}
+#    trust-store-password: ${application.ssl.truststore.password}
+    
+#intake:
+#  datalayer:
+#    url: http://localhost:8093/v1/data/intake/
+    
+#invoke:
+#  workflow:
+#    url: http://10.228.129.73:8096/workflow-api/workflow  
+    

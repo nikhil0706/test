@@ -1,0 +1,26 @@
+  ########## application port ####################
+server:
+  port: 8007
+############ logging configuration ###############
+logging:
+  file: S:/Phase2_Archlogs/logs/lookup-api.log
+  level:
+    com.cvs.specialty: DEBUG
+ ############# application name ###############
+spring:
+  application:
+    name: lookup-api   
+  cloud:
+    consul:
+      host: 10.228.129.73
+      port: 8500
+      discovery:
+        enabled: true
+        health-check-interval: ${consul.discovery.health.check.interval}
+        scheme: http
+        register-health-check: ${consul.discovery.register.health.check}
+    config:
+      enabled: true
+      format: ${config.server.format}
+      fail-fast: true
+      uri: http://10.228.129.70:8003

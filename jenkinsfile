@@ -1,0 +1,31 @@
+pipeline {
+    agent any 
+
+    stages {
+        stage('Build') { 
+            environment {
+                 JAVA_HOME = tool 'jdk-8u45'
+                 PATH="${JAVA_HOME}/bin:${PATH}"
+                 MAVEN_HOME = tool 'M3'
+            }
+            steps { 
+                sh '${MAVEN_HOME}/bin/mvn -U clean org.jacoco:jacoco-maven-plugin:prepare-agent install' 
+            }
+        }
+        stage("sonar analysis") {
+             environment {
+                 scannerHome = tool 'SonarQubeScanner'
+                 SONAR_HOST_URL = "http://10.228.129.72:9000"
+                 SONAR_AUTH_TOKEN = "5cfdabb6f434f071c6642ff7ce85b5c67d287ebe"
+            }
+            steps {
+                  sh "${scannerHome}/bin/sonar-scanner  -Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.login=${SONAR_AUTH_TOKEN}  -Dsonar.projectName=jenkins -Dsonar.projectVersion=2.0 -Dsonar.projectKey=sonar -Dsonar.sources=."
+            }
+        }
+        stage('NexusArtifactUploaderJob') {
+            steps {
+              nexusArtifactUploader artifacts: [[artifactId: 'intake-api', classifier: 'debug', file: 'target/intake-api-0.0.1-SNAPSHOT.jar', type: 'jar']], credentialsId: 'nexus', groupId: 'sd.sd', nexusUrl: 'http://cicd-nexusoss-01.pcf-east.cvshealthcloud.com/', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-releases', version: '2'
+            }
+       }
+    }
+}

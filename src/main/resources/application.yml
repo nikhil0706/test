@@ -1,0 +1,10 @@
+########## tsl configuration ####################
+#server:
+ # ssl:
+  #  key-store: ${application.ssl.keystore}
+ #   key-store-password: ${application.ssl.keystore.password}
+ #   key-store-type: ${application.ssl.keystore.type}
+ #   client-auth: ${application.ssl.client.auth}
+ #   enabled: ${application.ssl.enabled}
+   # trust-store: ${application.ssl.truststore}
+   # trust-store-password: ${application.ssl.truststore.password}
