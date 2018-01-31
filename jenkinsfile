@@ -24,7 +24,7 @@ pipeline {
         }
         stage('NexusArtifactUploaderJob') {
             steps {
-              nexusArtifactUploader artifacts: [[artifactId: 'intake-api', classifier: 'debug', file: 'target/intake-api-0.0.1-SNAPSHOT.jar', type: 'jar']], credentialsId: 'nexus', groupId: 'sd.sd', nexusUrl: 'http://cicd-nexusoss-01.pcf-east.cvshealthcloud.com/', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-releases', version: '2'
+              nexusArtifactUploader artifacts: [[artifactId: 'lookup-api', classifier: 'debug', file: 'target/specialty-lookup-0.0.1-SNAPSHOT.jar', type: 'jar']], credentialsId: 'nexus', groupId: 'sd.sd', nexusUrl: 'http://cicd-nexusoss-01.pcf-east.cvshealthcloud.com/', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-releases', version: '2'
             }
        }
     }
