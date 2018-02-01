@@ -9,7 +9,7 @@ pipeline {
                  MAVEN_HOME = tool 'M3'
             }
             steps { 
-                sh '${MAVEN_HOME}/bin/mvn -U clean org.jacoco:jacoco-maven-plugin:prepare-agent install' 
+                sh '${MAVEN_HOME}/bin/mvn -U clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dmaven.test.skip=true' 
             }
         }
         stage("sonar analysis") {
